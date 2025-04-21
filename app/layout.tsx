@@ -7,15 +7,15 @@ import './globals.css';
 import Footer from '@/components/layout/footer';
 import NavbarComponent from '@/components/layout/navbar';
 import { Pinned } from '@/components/layout/pinned';
-import { fontSans } from '@/config/fonts';
+import { fontPacifico, fontSans } from '@/config/fonts';
 import { siteConfig } from '@/config/site';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Divider } from '@heroui/react';
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name} | Juju · AI`,
+    default: `${siteConfig.name}: ${siteConfig.description}`,
+    template: `%s - ${siteConfig.name}: ${siteConfig.description}`,
   },
   description: siteConfig.description,
   icons: {
@@ -41,6 +41,15 @@ export default function RootLayout({
         suppressHydrationWarning
         lang="en">
         <head>
+          <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+          />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"
@@ -49,7 +58,8 @@ export default function RootLayout({
         <body
           className={clsx(
             'min-h-screen bg-background font-sans antialiased dark:bg-neutral-900 dark:text-neutral-100',
-            fontSans.variable
+            fontSans.variable,
+            fontPacifico.variable
           )}>
           <Providers
             themeProps={{

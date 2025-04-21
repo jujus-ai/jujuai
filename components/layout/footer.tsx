@@ -16,8 +16,12 @@ export default function Footer() {
               href="/"
               passHref>
               <Link className="flex items-center gap-1 mb-2">
-                <Logo />
-                <span className="font-bold text-lg text-inherit">Jujus</span>
+                <Logo
+                  width={96}
+                  height={32}
+                  fontSize={24}
+                />
+                {/* <span className="font-bold text-lg text-inherit">Jujus</span> */}
               </Link>
             </NextLink>
             <span className="text-foreground-500 text-sm">

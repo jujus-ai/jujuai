@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Juju · AI",
-  description: "Make beautiful things happen.",
+  name: "Jujus AI",
+  description: "Free AI Content Generator",
   pinned: true,
   navItems: [
     {

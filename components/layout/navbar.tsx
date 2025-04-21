@@ -1,7 +1,6 @@
 'use client';
 
 import '@/app/globals.css';
-import { Logo } from '@/components/icons';
 import {
   SignInButton,
   SignUpButton,
@@ -17,6 +16,7 @@ import {
   NavbarItem,
 } from '@heroui/react';
 import NextLink from 'next/link';
+import { Logo } from '../icons';
 import { ThemeSwitch } from '../theme-switch';
 
 export default function NavbarComponent() {
@@ -28,8 +28,12 @@ export default function NavbarComponent() {
         <NextLink
           className="flex items-center gap-1"
           href="/">
-          <Logo />
-          <p className="font-bold text-lg text-inherit">Jujus</p>
+          <Logo
+            width={96}
+            height={32}
+            fontSize={24}
+          />
+          {/* <p className="font-bold text-lg text-inherit">Jujus</p> */}
         </NextLink>
       </NavbarBrand>
       <NavbarContent className="w-3/5 hidden sm:flex gap-6 justify-center">
