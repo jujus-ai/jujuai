@@ -1,6 +1,8 @@
 'use client';
+
 import { Logo } from '@/components/icons';
 import { Link } from '@heroui/react';
+import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
 
 export default function Footer() {
@@ -16,16 +18,22 @@ export default function Footer() {
               href="/"
               passHref>
               <Link className="flex items-center gap-1 mb-2">
-                <Logo
-                  width={96}
-                  height={32}
-                  fontSize={24}
-                />
-                {/* <span className="font-bold text-lg text-inherit">Jujus</span> */}
+                <div className="flex justify-between gap-1">
+                  <Icon
+                    icon="lucide:layers"
+                    className="text-primary text-2xl"
+                  />
+                  <Logo
+                    width={64}
+                    height={30}
+                    className="ml-1 hidden md:block"
+                  />
+                </div>
+                {/* <span className="font-bold text-sm text-inherit">AI · 101</span> */}
               </Link>
             </NextLink>
             <span className="text-foreground-500 text-sm">
-              © {currentYear} Jujus. All Rights Reserved.
+              © {currentYear} IP AI 101. All Rights Reserved.
             </span>
           </div>
 

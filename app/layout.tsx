@@ -5,12 +5,11 @@ import { Providers } from '@/app/providers';
 import './globals.css';
 
 import Footer from '@/components/layout/footer';
-import NavbarComponent from '@/components/layout/navbar';
-import { Pinned } from '@/components/layout/pinned';
+// import NavbarComponent from '@/components/layout/navbar';
+import NavbarComponent from '@/components/layout/navbar_centered';
 import { fontPacifico, fontSans } from '@/config/fonts';
 import { siteConfig } from '@/config/site';
 import { ClerkProvider } from '@clerk/nextjs';
-import { Divider } from '@heroui/react';
 
 export const metadata: Metadata = {
   title: {
@@ -69,16 +68,16 @@ export default function RootLayout({
               disableTransitionOnChange: true,
             }}>
             <div className="max-w-full relative flex flex-col h-screen gap-y-2">
-              <div className="w-4/5 mx-auto">
+              {/* <div className="w-4/5 mx-auto">
                 {siteConfig.pinned && <Pinned />}
-              </div>
-              <div className="w-full mx-auto">
+              </div> */}
+              {/* <div className="w-full mx-auto">
                 <Divider />
-              </div>
+              </div> */}
               <div className="w-4/5 mx-auto">
                 <NavbarComponent />
               </div>
-              <main className="container w-4/5 mx-auto flex-grow mt-10">
+              <main className="container w-4/5 mx-auto flex-grow mt-[60px]">
                 {children}
               </main>
               <div className="w-4/5 mx-auto">

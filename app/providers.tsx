@@ -15,9 +15,16 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-    <HeroUIProvider navigate={router.push}>
-      <ToastProvider />
-      <ThemeProvider {...themeProps}>{children}</ThemeProvider>
-    </HeroUIProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+      {...themeProps}>
+      <HeroUIProvider navigate={router.push}>
+        <ToastProvider />
+        {children}
+      </HeroUIProvider>
+    </ThemeProvider>
   );
 }

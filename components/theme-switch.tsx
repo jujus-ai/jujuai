@@ -1,85 +1,43 @@
 'use client';
 
-import { SwitchProps, useSwitch } from '@heroui/switch';
-import { useIsSSR } from '@react-aria/ssr';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
-import clsx from 'clsx';
+import { Button } from '@heroui/react';
+import { Icon } from '@iconify/react';
 import { useTheme } from 'next-themes';
-import { FC } from 'react';
-
-import { MoonFilledIcon, SunFilledIcon } from '@/components/icons';
+import { FC, useEffect, useState } from 'react';
 
 export interface ThemeSwitchProps {
   className?: string;
-  classNames?: SwitchProps['classNames'];
 }
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({
-  className,
-  classNames,
-}) => {
+export const ThemeSwitch: FC<ThemeSwitchProps> = ({ className }) => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const isSSR = useIsSSR();
 
-  const onChange = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+  // 防止水合不匹配
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps,
-  } = useSwitch({
-    isSelected: theme === 'light' || isSSR,
-    'aria-label': `Switch to ${
-      theme === 'light' || isSSR ? 'light' : 'dark'
-    } mode`,
-    onChange,
-  });
-
   return (
-    <Component
-      {...getBaseProps({
-        className: clsx(
-          'px-px transition-opacity hover:opacity-80 cursor-pointer',
-          className,
-          classNames?.base
-        ),
-      })}>
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-      <div
-        {...getWrapperProps()}
-        className={slots.wrapper({
-          class: clsx(
-            [
-              'w-auto h-auto',
-              'bg-transparent',
-              'rounded-lg',
-              'flex items-center justify-center',
-              'group-data-[selected=true]:bg-transparent',
-              '!text-default-500',
-              'pt-px',
-              'px-0',
-              'mx-0',
-            ],
-            classNames?.wrapper
-          ),
-        })}>
-        {!isSelected || isSSR ? (
-          <MoonFilledIcon size={20} />
-        ) : (
-          <SunFilledIcon />
-        )}
-      </div>
-    </Component>
+    <Button
+      isIconOnly
+      radius="full"
+      variant="light"
+      onPress={toggleTheme}
+      className={className}>
+      <Icon
+        className="text-default-500"
+        icon={theme === 'dark' ? 'solar:sun-linear' : 'solar:moon-linear'}
+        width={24}
+      />
+    </Button>
   );
 };
